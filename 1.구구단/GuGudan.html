@@ -10,50 +10,49 @@
         <div id="root"></div>
         <script type="text/babel">
             class GuGuDan extends React.Component {
-                constructor(props) {
-                    super(props);
-                    this.state = {
-                        first: Math.ceil(Math.random() * 9),
-                        second: Math.ceil(Math.random() * 9),
-                        value: '',
-                        result: '',
-                    };
-                }
+                state = {
+                    first: Math.ceil(Math.random() * 9),
+                    second: Math.ceil(Math.random() * 9),
+                    value: '',
+                    result: '',
+                };
+            // constructor, super, this 안 써도 된다.
                 
-                onSubmit = (e) => {
-                    e.preventDefault();
-                    if (parseInt(this.state.value) === this.state.first * this.state.second) {
-                      this.setState({
-                          result: '정답',
-                          first: Math.ceil(Math.random() * 9),
-                          second: Math.ceil(Math.random() * 9),
-                          value: '',
-                        });
-                    } else {
-                      this.setState({
-                        result: '땡',
-                        value: '',
-                      });
-                    }
-                  };
-
-                  onChange = (e) => {
-                      this.setState({ value:e.target.value });
-                  };
-
-
-                render() {
-                    return (
-                        <div>
-                            <div>{this.state.first} 곱하기 {this.state.second}는?</div>
-                            <form onSubmit={this.onSubmit}>
-                                <input type="number" value={this.state.value} onChange={this.onChange} />
-                                <button>입력!</button>
-                            </form>
-                            <div>{this.state.result}</div>
-                        </div>
-                    );
+            onSubmit = (e) => {
+                e.preventDefault();
+                if (parseInt(this.state.value) === this.state.first * this.state.second) {
+                    this.setState({
+                      result: '정답',
+                      first: Math.ceil(Math.random() * 9),
+                      second: Math.ceil(Math.random() * 9),
+                      value: '',
+                    });
+                } else {
+                    this.setState({
+                    result: '땡',
+                    value: '',
+                    });
                 }
+            };
+            // 직접 만들어준 함수는 무조건 => 화살표함수 써야된다
+
+            onChange = (e) => {
+                this.setState({ value:e.target.value });
+            };
+
+
+            render() {
+                return (
+                    <React.Fragment>
+                        <div>{this.state.first} 곱하기 {this.state.second}는?</div>
+                        <form onSubmit={this.onSubmit}>
+                            <input type="number" value={this.state.value} onChange={this.onChange} />
+                            <button type="submit">입력!</button>
+                        </form>
+                        <div>{this.state.result}</div>
+                    </React.Fragment>
+                    );
+                };
             }
         </script>
         <script type="text/babel">
