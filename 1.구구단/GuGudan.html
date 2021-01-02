@@ -21,17 +21,21 @@
             onSubmit = (e) => {
                 e.preventDefault();
                 if (parseInt(this.state.value) === this.state.first * this.state.second) {
-                    this.setState({
-                      result: '정답',
-                      first: Math.ceil(Math.random() * 9),
-                      second: Math.ceil(Math.random() * 9),
-                      value: '',
+                    this.setState((prevState) => {
+                        return{
+                            result: '정답: ' + prevState.value,
+                            first: Math.ceil(Math.random() * 9),
+                            second: Math.ceil(Math.random() * 9),
+                            value: '',
+                        }
                     });
+                    this.input.focus();
                 } else {
                     this.setState({
                     result: '땡',
                     value: '',
                     });
+                    this.input.focus();
                 }
             };
             // 직접 만들어준 함수는 무조건 => 화살표함수 써야된다
@@ -40,13 +44,17 @@
                 this.setState({ value:e.target.value });
             };
 
+            input;
+
+            onRefInput = (c) => { this.input = c; };
 
             render() {
+                console.log('렌더링'); // setstate 할 때 render함수 실행된다 나중에 성능 최적화할때 중요
                 return (
                     <React.Fragment>
                         <div>{this.state.first} 곱하기 {this.state.second}는?</div>
                         <form onSubmit={this.onSubmit}>
-                            <input type="number" value={this.state.value} onChange={this.onChange} />
+                            <input ref={this.onRefInput} type="number" value={this.state.value} onChange={this.onChange} />
                             <button type="submit">입력!</button>
                         </form>
                         <div>{this.state.result}</div>
