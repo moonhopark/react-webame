@@ -1,5 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 node_modules
 =======
 /node_modules
 >>>>>>> df57a4d (cache clear)
+=======
+node_modules
+>>>>>>> 33ff8ce (gitignore 수정)
