@@ -14,11 +14,7 @@ module.exports = {
 
   module: {
     rules: [{
-<<<<<<< HEAD
       test: '/\.jsx?$/',
-=======
-      test: /\.jsx?$/,
->>>>>>> 784364d (웹팩으로 빌드하는 방법 기초)
       loader: 'babel-loader',
       options: {
         presets: ['@babel/preset-env','@babel/preset-react'],
@@ -32,8 +28,4 @@ module.exports = {
     path: path.join(__dirname, 'dist'), // path.join 하면 dirname(현재폴더)에 'dist'경로 연결해줌
     filename: 'app.js'
   }, // output으로 출력
-<<<<<<< HEAD
 }
-=======
-};
->>>>>>> 784364d (웹팩으로 빌드하는 방법 기초)
