@@ -1,16 +1,15 @@
 const React = require('react');
-const { JavascriptModulesPlugin } = require('webpack');
 const { Component } = React;
 // 사용하는 패키지 같은 거를 불러옴
 
-class WordRelay extends React.Component {
+class WordRelay extends Component {
   state  = {
-
+    text: 'Hello, webpack',
   };
 
   render() {
-
-  };
+    return <h1>{this.state.text}</h1>;
+  }
 }
 
 module.exports = WordRelay;
