@@ -36,9 +36,9 @@ class NumberBaseball extends Component {
         </form>
         <div>시도: {this.state.tries.length}</div>
         <ul>
-          {this.fruits.map( (v,i) => {
+          {this.fruit.map( (v,i) => {
             return (
-              <Try />
+              <Try value={v} index={i} />
             );
           })
           }
