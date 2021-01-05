@@ -1,4 +1,5 @@
 import React, { Component, createRef } from 'react';
+import Try from './Try';
 
 function getNumbers(){
 
@@ -20,6 +21,12 @@ class NumberBaseball extends Component {
 
   };
 
+  fruit = [
+    { fruit: '사과', taste: '맛있다'},
+    { fruit: '바나나', taste: '맛없다'},
+    { fruit: '포도', taste: '시다'},
+  ];
+
   render() {
     return (
       <>
@@ -29,24 +36,9 @@ class NumberBaseball extends Component {
         </form>
         <div>시도: {this.state.tries.length}</div>
         <ul>
-          {[
-            ['사과','맛있다'],
-            ['바나나','맛없다'],
-            ['포도','시다'],
-          ].map( (v) => {
+          {this.fruits.map( (v,i) => {
             return (
-              <li><b>{v[0]}</b> - {v[1]}</li>
-            );
-          })
-          }
-
-          {[
-            { fruit: '사과', taste: '맛있다'},
-            { fruit: '바나나', taste: '맛없다'},
-            { fruit: '포도', taste: '시다'},
-          ].map( (v,i) => {
-            return (
-              <li key={v.fruit}><b>{v.fruit}</b> - {i}</li>
+              <Try />
             );
           })
           }
