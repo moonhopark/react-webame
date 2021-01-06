@@ -49,31 +49,25 @@ const ResponseCheckHooks = () => {
   };
 
 
+  return [
+    <div key="사과">사과</div>,
+    <div key="배">배</div>,
+    <div key="귤">귤</div>,
+    <div key="배">배</div>,
+  ]; // return에서 array로 출력할 수 있는데 무조건 key 붙여주기
 
-  return (
-    <>
-      <div
-        id="screen"
-        className={state}
-        onClick={onClickScreen}
-      >
-        {message}
-      </div>
-      {(() => {
-        if (result.length === 0) {
-          return null;
-        } else {
-          return <> 
-            <div>평균 시간: {result.reduce((a, c) => a + c) / result.length}ms</div>
-            <button onClick={onReset}>리셋</button>
-          </>
-        }
-      })()}
-
-
-      {/* {renderAverage()} */}
-    </>
-  )
+//   return (
+//     <d>
+//       <div
+//         id="screen"
+//         className={state}
+//         onClick={onClickScreen}
+//       >
+//         {message}
+//       </div>
+//       {renderAverage()}
+//     </div>
+//   )
 }
 
 
