@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Try from './TryHooks';
+import Try from './Try';
 
 function getNumbers(){
   const candidate = [1,2,3,4,5,6,7,8,9];
@@ -67,11 +67,9 @@ const NumberBaseballHooks = () => {
       </form>
       <div>시도: {tries.length}</div>
       <ul>
-        {tries.map((v, i) => {
-          return (
-            <Try key={`${i + 1}차 시도 :`} tryInfo={v} />
-          );
-        })}
+        {tries.map((v, i) => (
+          <Try key={`${i + 1}차 시도 :`} tryInfo={v} />
+        ))}
       </ul>
     </>
   );
