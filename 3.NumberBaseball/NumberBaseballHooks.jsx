@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Try from './Try';
 
 function getNumbers(){
@@ -16,6 +16,7 @@ const NumberBaseballHooks = () => {
   const [value, setValue] = useState('');
   const [answer, setAnswer] = useState(getNumbers());
   const [tries, setTries] = useState([]);
+  const inputEl = useRef(null);
   
   
   const onSubmitForm = (e) => {
@@ -29,6 +30,7 @@ const NumberBaseballHooks = () => {
       setValue('');
       setAnswer(getNumbers());
       setTries([]);
+      inputEl.current.focus();
     } else { // 답 틀렸으면
       const answerArray = value.split('').map((v) => parseInt(v));
       let strike = 0;
@@ -39,6 +41,7 @@ const NumberBaseballHooks = () => {
         setValue('');
         setAnswer(getNumbers());
         setTries([]);
+        inputEl.current.focus();
       } else {
         for (let i = 0; i < 4; i += 1) {
           if (answerArray[i] === answer[i]) {
@@ -49,6 +52,7 @@ const NumberBaseballHooks = () => {
         }
         setTries((prevTries) => [...prevTries, { try: value, result: `${strike} 스트라이크, ${ball} 볼입니다`}]);
         setValue('');
+        inputEl.current.focus();
       }
     }
   };
@@ -63,7 +67,7 @@ const NumberBaseballHooks = () => {
     <>
       <h1>{result}</h1>
       <form onSubmit={onSubmitForm}>
-        <input maxLength={4} value={value} onChange={onChangeInput} />
+        <input ref={inputEl} maxLength={4} value={value} onChange={onChangeInput} />
       </form>
       <div>시도: {tries.length}</div>
       <ul>

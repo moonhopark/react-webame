@@ -24,6 +24,7 @@ class NumberBaseball extends Component {
     e.preventDefault();
     if (value === answer.join('')) {
       this.setState((prevState) => {
+        // 다른 동작을 더 미세하게 할 수 있다.
         return {
           result: '홈런!',
           tries: [...prevState.tries, { try: value, result: '홈런!' }],
@@ -50,7 +51,7 @@ class NumberBaseball extends Component {
           answer: getNumbers(),
           tries: [],
         });
-        this.inputRef.current.focus();
+        this.inputRef.current.focus(); // hooks랑 비슷하게 current로 접근가능
       } else {
         for (let i = 0; i < 4; i += 1) {
           if (answerArray[i] === answer[i]) {
@@ -65,7 +66,7 @@ class NumberBaseball extends Component {
             value: '',
           };
         });
-        this.inputRef.current.focus();
+        this.inputRef.current.focus(); // hooks랑 비슷하게 current로 접근가능
       }
     }
   };
