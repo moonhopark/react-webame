@@ -56,7 +56,7 @@ class RSP extends Component {
     };
   };
 
-  onClickBtn = (choice) => () => {
+  onClickBtn = (choice) => () => { // 이 부분 주의!!
     const { imgCoord } = this.state;
     clearInterval(this.interval);
     const myScore = scores[choice];
@@ -83,7 +83,7 @@ class RSP extends Component {
     };
     setTimeout( () => {
       this.interval = setInterval(this.changeHand,100);
-    }, 2000);
+    }, 1000);
   };
   
   render(){
