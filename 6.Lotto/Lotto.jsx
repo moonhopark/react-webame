@@ -23,23 +23,36 @@ class Lotto extends Component {
 
 timeouts = [];
 
+runTimeouts = () => {
+  console.log('runTimeouts')
+  const { winNumbers } = this.state;
+  for ( let i=0; i< winNumbers.length-1; i++){ // let을 쓰면 클로저문제가 안생긴다.
+    this.timeouts[i] = setTimeout(() => {
+      this.setState((prevState) =>{
+        return {
+          winBalls: [...prevState.winBalls, winNumbers[i]]
+        };
+      });
+    }, (i+1)*1000);
+  }
+  this.timeouts[6] = setTimeout(() => {
+    this.setState({
+      bonus: winNumbers[6],
+      redo: true,
+    })
+  }, 7000);
+}
+
   componentDidMount() {
-    const { winNumbers } = this.state;
-    for ( let i=0; i< winNumbers.length-1; i++){ // let을 쓰면 클로저문제가 안생긴다.
-      this.timeouts[i] = setTimeout(() => {
-        this.setState((prevState) =>{
-          return {
-            winBalls: [...prevState.winBalls, winNumbers[i]]
-          };
-        });
-      }, (i+1)*1000);
+    console.log('didMount')
+    this.runTimeouts();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('didUpdate')
+    if (this.state.winBalls.length === 0) { // if문 잘 써야한다.
+      this.runTimeouts();
     }
-    this.timeouts[6] = setTimeout(() => {
-      this.setState({
-        bonus: winNumbers[6],
-        redo: true,
-      })
-    }, 7000);
   }
 
   componentWillUnmount() {
@@ -47,6 +60,17 @@ timeouts = [];
       clearTimeout(v);
     });
   }
+
+  onClickRedo = () => {
+    console.log('onClickRedo')
+    this.setState({
+      winNumbers: getWinNumbers(), // 당첨 숫자들
+      winBalls: [],
+      bonus: null, // 보너스공
+      redo: false,
+    })
+    this.timeouts = [];
+  };
 
   render() {
     const { winBalls, bonus, redo } = this.state;
