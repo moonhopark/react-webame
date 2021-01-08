@@ -53,6 +53,9 @@ runTimeouts = () => {
     if (this.state.winBalls.length === 0) { // if문 잘 써야한다.
       this.runTimeouts();
     }
+    if (prevState.winNumbers !== this.state.winNumbers) {
+      console.log('로또 숫자를 생성합니다.');
+    }
   }
 
   componentWillUnmount() {
