@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import Ball from './Ball';
 
 function getWinNumbers(){
@@ -14,7 +14,8 @@ function getWinNumbers(){
 }
 
 const Lotto = () => {
-  const [winNumbers, setWinNumbers] = useState(getWinNumbers());
+  const lottoNumbers = useMemo(() => getWinNumbers(), []) // useMemo를 안쓰면 getWinNumbers가 계속 실행된다. useMemo는 값을 기억
+  const [winNumbers, setWinNumbers] = useState(lottoNumbers);
   const [winBalls, setWinBalls] = useState([]);
   const [bonus, setBonus] = useState(null);
   const [redo, setRedo] = useState(false);
@@ -40,14 +41,15 @@ const Lotto = () => {
   // 배열에 요소가 있으면 componentDidMount랑 componentDidUdatd 둘 다 수행
   
 
-  const onClickRedo = () => {
+  const onClickRedo = useCallback( () => {
     console.log('onClickRedo')
-    setWinNumbers(getWinNumber());
+    console.log(winNumbers)
+    setWinNumbers(getWinNumbers());
     setWinBalls([]);
     setBonus(null);
     setRedo(false);
     timeouts.current = []; // useEffect에서 timeouts.current가 바뀌는거 감지하는 부분
-  };
+  }, [winNumbers]); // useCallback은 함수자체를 기억
   
   return (
     <>
@@ -55,10 +57,12 @@ const Lotto = () => {
       <div id="결과창">
         {winBalls.map((v) => <Ball key={v} number={v} />)}
       </div>
-      {bonus && <Ball number={bonus} />}
+      {bonus && <Ball number={bonus} />} 
       {redo && <button onClick={onClickRedo}>한 번 더!</button>}
     </>
   );
-}
+} 
+//<Ball key={v} number={v} onclick={onClickRedo}/>
+// 위 처럼 자식컴포넌트에 props로 함수를 넘길때 꼭 useCallback 써줘야 한다.
 
 export default Lotto;
