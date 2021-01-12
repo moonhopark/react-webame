@@ -42,7 +42,7 @@ const reducer = (state, action) => {
         turn: state.turn === 'O' ? 'X' : 'O',
       };
     }
-    case RESET_GANE: {
+    case RESET_GAME: {
       return {
         ...state,
         turn: 'O',
@@ -103,11 +103,11 @@ const TicTacToe = () => {
         });
       });
       if (all){
+        dispatch({ type: SET_WINNER, winner: null })
         dispatch({ type: RESET_GAME });
       }else{
         dispatch({ type: CHANGE_TURN});
       }
-      dispatch({ type: CHANGE_TURN });
     }
   }, [recentCell]);
 
