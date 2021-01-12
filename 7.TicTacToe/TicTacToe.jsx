@@ -3,11 +3,17 @@ import Table from './Table';
 
 const initalState = {
   winner: '',
-  turn: '0',
-  tableData: [['','',''],['','',''],['','','']],
-}
+  turn: 'O',
+  tableData: [
+    ['','',''],
+    ['','',''],
+    ['','',''],
+  ],
+};
 
-const SET_WINNER = 'SET_WINNER'; 
+export const SET_WINNER = 'SET_WINNER';
+export const CLICK_CELL = 'CLICK _CELL';
+export const CHANGE_TURN = 'CHANGE_TURN';
 // action.type이 action의 이름인데 상수로 빼두는 것이 좋다.
 
 const reducer = (state, action) => {
@@ -16,8 +22,23 @@ const reducer = (state, action) => {
       // state.winner = action.winner; 이렇게 하면 안됨.
       return {
         ...state,
-        winner: action.winner
+        winner: action.winner,
+      };
+    case CLICK_CELL: {
+      const tableData = [...state.tableData];
+      tableData[action.row] = [...tableData[action.row]]; // immer라는 라이브러리로 가독성 해결
+      tableData[action.row][action.cell] = state.turn;
+      return {
+        ...state,
+        tableData,
       }
+    }
+    case CHANGE_TURN: {
+      return {
+        ...state,
+        turn: state.turn === 'O' ? 'X' : 'O',
+      };
+    }
   }
 };
 
@@ -34,7 +55,7 @@ const TicTacToe = () => {
 
   return (
     <>
-      <Table onClick={onClickTable} tableData={state.tableData} />
+      <Table onClick={onClickTable} tableData={state.tableData} dispatch={dispatch} />
       {state.winner && <div>{state.winner}님의 승리</div>}
     </>
   )
