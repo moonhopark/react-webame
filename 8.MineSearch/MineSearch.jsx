@@ -237,7 +237,8 @@ const MineSearch = () => {
     }
   }, [halted]);
 
-  return(
+
+  return (
     <TableContext.Provider value={value}>
       <Form />
       <div>{timer}</div>
