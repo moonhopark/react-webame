@@ -35,7 +35,7 @@ const getTdText = (code) => {
     case CODE.NORMAL:
       return '';
     case CODE.MINE:
-      return 'X';
+      return '';
     case CODE.CLICKED_MINE:
       return '펑';
     case CODE.FLAG_MINE:
@@ -45,7 +45,7 @@ const getTdText = (code) => {
     case CODE.QUESTION:
       return '?';
     default:
-      return '';
+      return code || '';
       
   }
 };

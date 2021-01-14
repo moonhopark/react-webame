@@ -73,6 +73,27 @@ const reducer = (state, action) => {
       const tableData = [...state.tableData];
       tableData[action.row] = [...state.tableData[action.row]];
       tableData[action.row][action.cell] = CODE.OPENED;
+      let around = [];
+      if (tableData[action.row -1]) {
+        around = around.concat(
+          tableData[action.row-1][action.cell-1],
+          tableData[action.row-1][action.cell],
+          tableData[action.row-1][action.cell+1],
+        );
+      };
+      around = around.concat(
+        tableData[action.row][action.cell-1],
+        tableData[action.row][action.cell+1],
+      );
+      if (tableData[action.row +1]) {
+        around = around.concat(
+          tableData[action.row+1][action.cell-1],
+          tableData[action.row+1][action.cell],
+          tableData[action.row+1][action.cell+1],
+        );
+      };
+      const count = around.filter((v) => [CODE.MINE, CODE.FLAG_MINE, CODE.QUESTION_MINE].includes(v)).length;
+      tableData[action.row][action.cell] = count;
       return {
         ...state,
         tableData,
@@ -91,10 +112,10 @@ const reducer = (state, action) => {
     case FLAG_CELL: {
       const tableData = [...state.tableData];
       tableData[action.row] = [...state.tableData[action.row]];
-      if (tableData[action.row][action.cell] = CODE.FLAG_MINE) {
-        tableData[action.row][action.cell] === CODE.QUESTION_MINE;
+      if (tableData[action.row][action.cell] === CODE.MINE) {
+        tableData[action.row][action.cell] = CODE.FLAG_MINE;
       } else {
-        tableData[action.row][action.cell] === CODE.QUESTION;
+        tableData[action.row][action.cell] = CODE.FLAG;
       }
       return {
         ...state,
@@ -104,10 +125,10 @@ const reducer = (state, action) => {
     case QUESTION_CELL: {
       const tableData = [...state.tableData];
       tableData[action.row] = [...state.tableData[action.row]];
-      if (tableData[action.row][action.cell] = CODE.QUESTION_MINE) {
-        tableData[action.row][action.cell] === CODE.FLAG_MINE;
+      if (tableData[action.row][action.cell] === CODE.FLAG_MINE) {
+        tableData[action.row][action.cell] = CODE.QUESTION_MINE;
       } else {
-        tableData[action.row][action.cell] === CODE.FLAG;
+        tableData[action.row][action.cell] = CODE.QUESTION;
       }
       return {
         ...state,
@@ -117,10 +138,10 @@ const reducer = (state, action) => {
     case NORMALIZE_CELL: {
       const tableData = [...state.tableData];
       tableData[action.row] = [...state.tableData[action.row]];
-      if (tableData[action.row][action.cell] = CODE.QUESTION_MINE) {
-        tableData[action.row][action.cell] === CODE.MINE;
+      if (tableData[action.row][action.cell] === CODE.QUESTION_MINE) {
+        tableData[action.row][action.cell] = CODE.MINE;
       } else {
-        tableData[action.row][action.cell] === CODE.NORMAL;
+        tableData[action.row][action.cell] = CODE.NORMAL;
       }
       return {
         ...state,
