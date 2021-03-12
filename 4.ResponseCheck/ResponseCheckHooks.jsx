@@ -36,7 +36,7 @@ const ResponseCheckHooks = () => {
   }
 
   const onReset = () => {
-    setState([]);
+    setResult([]);
   }
 
   const renderAverage = () => {
