@@ -3,7 +3,7 @@ const { useState, useRef } = React;
 // 사용하는 패키지 같은 거를 불러옴
 
 const WordRelay = () => {
-  const [word, setWord] = useState('제로초');
+  const [word, setWord] = useState('박문호');
   const [value, setValue] = useState('');
   const [result, setResult] = useState('');
   const inputRef = useRef(null);
