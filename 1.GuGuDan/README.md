@@ -6,17 +6,17 @@
 
 #### 첫 화면
 
-![구구단1](https://user-images.githubusercontent.com/74300832/110944446-d1455800-837f-11eb-9040-27283270f6c5.PNG)
+![구구단1](https://user-images.githubusercontent.com/74300832/110944446-d1455800-837f-11eb-9040-27283270f6c5.PNG)  
 페이지를 열면 구구단 문제, 답을 맞칠 수 있는 칸, 입력 버튼이 나온다.
 
 #### 정답을 맞췄을 시
 
-![구구단2](https://user-images.githubusercontent.com/74300832/110945110-a0195780-8380-11eb-8e35-498636586f25.PNG)
+![구구단2](https://user-images.githubusercontent.com/74300832/110945110-a0195780-8380-11eb-8e35-498636586f25.PNG)  
 다음 문제로 넘어가고 밑에 정답이 나온다.
 
 #### 오답일 시
 
-![구구단3](https://user-images.githubusercontent.com/74300832/110944836-5466ae00-8380-11eb-8e88-1fa60e1ea434.PNG)
+![구구단3](https://user-images.githubusercontent.com/74300832/110944836-5466ae00-8380-11eb-8e88-1fa60e1ea434.PNG)  
 문제는 변하지 않고 밑에 땡이라고 나온다.
 
 ---
