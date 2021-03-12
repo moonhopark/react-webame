@@ -23,14 +23,14 @@
 #### 10번 째 틀렸을 시
 
 ![숫자야구6](https://user-images.githubusercontent.com/74300832/110948870-394a6d00-8385-11eb-99b4-9e82e75e3cf9.PNG)
-게임을 다시 시작한다는 팝업창이 뜬다.
+게임을 다시 시작한다는 팝업창이 뜬다.  
 ![숫자야구7](https://user-images.githubusercontent.com/74300832/110948875-3b143080-8385-11eb-9194-385c1fa0b763.PNG)
 위 화면에서 확인 버튼을 누르면 실패라는 문구와 답이 나온다.
 
 #### 정답을 맞췄을 시
 
 ![숫자야구4](https://user-images.githubusercontent.com/74300832/110948857-364f7c80-8385-11eb-90d0-bfe439a14f46.PNG)
-게임을 다시 시작한다는 팝업창이 뜬다.
+게임을 다시 시작한다는 팝업창이 뜬다.  
 ![숫자야구5](https://user-images.githubusercontent.com/74300832/110948868-38194000-8385-11eb-88c0-9820a0a96ae8.PNG)
 홈런이라는 문구가 나오고 새로운 게임을 시작한다.
 
