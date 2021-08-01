@@ -1,5 +1,11 @@
 import React from 'react';
-import { BrowserRouter, Route, Link, HashRouter } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Route,
+  Link,
+  HashRouter,
+  Switch,
+} from 'react-router-dom';
 
 import GameMatcher from '../react-router/GameMatcher';
 
@@ -18,7 +24,13 @@ const Games = () => {
         <Link to="/game/index">게임 매쳐 </Link>
       </div>
       <div>
-        <Route path="/game/:name" component={GameMatcher}></Route>
+        <Route exact path="/" render={props => <GameMatcher {...props} />} />
+        <Route
+          path="/game/:name"
+          render={props => <GameMatcher {...props} />}
+        />
+        {/* props 넘겨주는 법
+        <Route path="/game/:name" render={(props) => <GameMatcher props={props.abc} />}/> */}
       </div>
     </BrowserRouter>
   );
